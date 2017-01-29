@@ -21,6 +21,8 @@
 
             SamplePublisher.RunAsync(cnInfo).Wait();
 
+            //SamplePubMany.RunAsync(cnInfo).Wait(); //Can use Sample11 to measure with NATS TOP
+
             //SampleRequester.RunAsync(cnInfo).Wait(); //Run with Sample7
 
             //SamplePublisherWildcards.RunAsync(cnInfo).Wait(); // Run with Sample 8, 9

@@ -91,6 +91,7 @@
     <Compile Include="Sample07.cs" />
     <Compile Include="Sample08.cs" />
     <Compile Include="Sample09.cs" />
+    <Compile Include="Sample11.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
