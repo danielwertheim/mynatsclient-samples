@@ -13,6 +13,10 @@ namespace Samples.Subscriber
                 client.Connect();
 
                 //Queue groups (start two or more consumers)
+                //Queue groups means balancing as only one in the
+                //group will get it.
+                //NOTE! Others consumers on the same subject will also
+                //get the message.
                 var subInfo = new SubscriptionInfo("demo", queueGroup: "Grp1");
                 await client.SubWithHandlerAsync(
                     subInfo,

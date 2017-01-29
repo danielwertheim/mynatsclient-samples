@@ -14,17 +14,27 @@ namespace Samples.Subscriber
                 client.Connect();
 
                 //Observer lets you react on exceptions etc
+                //Send "fail" to have it fail
                 await client.SubWithObserverAsync(
                     "demo",
                     new DelegatingObserver<MsgOp>(
-                        msg =>
+                        msgOp =>
                         {
-                            if (client.Stats.OpCount == 5)
+                            var msg = msgOp.GetPayloadAsString();
+
+                            if (msg == "fail")
                                 throw new Exception("Oh no!");
 
-                            Console.WriteLine(msg.GetPayloadAsString());
+                            Console.WriteLine(msg);
                         },
                         ex => Console.WriteLine($"Bad times! {ex}")));
+
+                //You can have an "generic" handler for exceptions as well
+                client.MsgOpStream.OnException = (msgOp, ex) =>
+                    Console.WriteLine($"Worse times! {ex}");
+
+                //If logging is all you need you can also hook into
+                //LoggerManager.Resolve
 
                 Console.WriteLine("Hit key to quit.");
                 Console.ReadKey();

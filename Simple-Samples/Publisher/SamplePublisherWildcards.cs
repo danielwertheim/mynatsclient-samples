@@ -19,7 +19,7 @@ namespace Samples.Publisher
                     if (string.IsNullOrWhiteSpace(message))
                         break;
 
-                    Console.WriteLine("Subject? (blank=quit)");
+                    Console.WriteLine("To what \"Child\" Subject? (blank=quit)");
                     var subject = Console.ReadLine();
                     if (string.IsNullOrWhiteSpace(subject))
                         break;

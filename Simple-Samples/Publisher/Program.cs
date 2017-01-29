@@ -4,6 +4,8 @@
     {
         public static void Main(string[] args)
         {
+            // Shows possible connection options
+
             //var cnInfo = new ConnectionInfo("somehost", 4222) //You can pass many hosts in a cluster as well
             //{
             //    //AutoReconnectOnFailure = true
@@ -19,9 +21,9 @@
 
             SamplePublisher.RunAsync(cnInfo).Wait();
 
-            //SamplePublisherWildcards.RunAsync(cnInfo).Wait();
-
             //SampleRequester.RunAsync(cnInfo).Wait(); //Run with Sample7
+
+            //SamplePublisherWildcards.RunAsync(cnInfo).Wait(); // Run with Sample 8, 9
 
             //SamplePublisherJson.RunAsync(cnInfo).Wait(); //Run with Sample10
         }

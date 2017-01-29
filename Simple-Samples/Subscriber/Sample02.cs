@@ -14,6 +14,7 @@ namespace Samples.Subscriber
 
                 //Subsribe and unsub after 3 messages
                 var subInfo = new SubscriptionInfo("demo", maxMessages: 3);
+
                 await client.SubWithHandlerAsync(
                     subInfo,
                     msg => Console.WriteLine(msg.GetPayloadAsString()));

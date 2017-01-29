@@ -12,7 +12,7 @@ namespace Samples.Subscriber
             {
                 client.Connect();
 
-                //Respond to request
+                //Respond to request's "replyTo"
                 await client.SubWithHandlerAsync(
                     "demo-request",
                     msgOp =>
