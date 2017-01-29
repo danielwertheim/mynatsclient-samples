@@ -12,6 +12,7 @@ namespace TcpClient
 
         static void Main(string[] args)
         {
+            //Connect to NATS Server using TCPClient.
             using (var tcp = new System.Net.Sockets.TcpClient())
             {
                 tcp.Connect(NatsHost, NatsPort);
@@ -19,11 +20,13 @@ namespace TcpClient
                 while (true)
                 {
                     Console.WriteLine("Send: (Blank to Exit)");
-                    var msg = Console.ReadLine();
-                    if (string.IsNullOrWhiteSpace(msg))
+
+                    var message = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(message))
                         break;
 
-                    tcp.Client.Publish(Subject, msg);
+                    //Use extension method below to send message
+                    tcp.Client.Publish(Subject, message);
                 }
 
                 tcp.Close();
@@ -33,6 +36,8 @@ namespace TcpClient
 
     public static class SocketExtensions
     {
+        //http://nats.io/documentation/internals/nats-protocol/#PUB
+        //PUB <subject> [reply-to] <#bytes>\r\n[payload]\r\n
         public static void Publish(this Socket socket, string subject, string data)
             => socket.Send(Encode($"pub {subject} {data.Length}\r\n{data}\r\n"));
 
